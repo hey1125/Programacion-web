@@ -181,3 +181,74 @@ strong {
         display: none;
     }
 }
+
+
+/* Contenedor principal en horizontal */
+
+.team-horizontal {
+    display: flex;
+    justify-content: space-around;
+    /* Distribuye espacio uniforme entre ellos */
+    align-items: flex-start;
+    gap: 20px;
+    margin-top: 50px;
+    flex-wrap: wrap;
+    /* Para que en móviles se bajen si no caben */
+}
+
+
+/* Cada bloque individual */
+
+.member-item {
+    flex: 1;
+    /* Todos miden lo mismo */
+    min-width: 200px;
+    text-align: center;
+}
+
+
+/* La caja de la foto con el efecto transparente que traíamos */
+
+.photo-box {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 15px;
+    /* Centra la foto y da espacio abajo al nombre */
+    border-radius: 20px;
+    /* Bordes redondeados modernos */
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    transition: transform 0.3s ease;
+}
+
+.photo-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Ajusta la foto sin estirarla */
+}
+
+
+/* Efecto al pasar el mouse */
+
+.photo-box:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary);
+    box-shadow: 0 10px 20px rgba(56, 189, 248, 0.2);
+}
+
+
+/* Estilo del nombre y cargo */
+
+.member-name {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    color: var(--white);
+}
+
+.member-role {
+    font-size: 0.85rem;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
