@@ -1,0 +1,182 @@
+// Variables
+$primary-blue: #4285f4;
+$text-dark: #333;
+$background-dark: #695959;
+$text-light: #777;
+$bg-light: #f9f9f9;
+$border-color: #e0e0e0;
+$bg-filter: #ffffff;
+$text-filter: #666;
+$gray-light: #f8f9fa;
+// Estilos Base
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background-color: white;
+}
+
+// Layout del Grid
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    padding: 40px 10%;
+    @media (max-width: 900px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @media (max-width: 600px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+// Estilo de la Tarjeta
+.card {
+    border: 1px solid $border-color;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+    .card-img {
+        height: 180px;
+        background-color: #eee;
+    }
+    .card-body {
+        padding: 15px;
+        h3 {
+            font-size: 1.1rem;
+            margin: 0 0 10px;
+            color: $text-dark;
+        }
+        .stars {
+            color: #ffb400;
+            font-size: 0.9rem;
+            span {
+                color: $text-light;
+            }
+        }
+        .price {
+            font-weight: bold;
+            font-size: 1.2rem;
+            .old {
+                font-size: 0.9rem;
+                text-decoration: line-through;
+                color: $text-light;
+                margin-left: 10px;
+            }
+        }
+        .btn-add {
+            width: 100%;
+            background-color: $primary-blue;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-weight: 600;
+            &:hover {
+                background-color: darken($primary-blue, 10%);
+            }
+        }
+    }
+}
+
+// Hero Section
+.hero {
+    border-radius: 30px;
+    overflow: hidden;
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('../img/tendencias.jpg');
+    background-color: $background-dark;
+    background-size: cover;
+    background-position: right center;
+    background-repeat: no-repeat;
+    width: 70%;
+    margin: 20px auto;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    padding: 0 10%;
+    .hero-content {
+        max-width: 500px;
+        color: #222;
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        .btn-primary {
+            background-color: $primary-blue;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 5px;
+        }
+    }
+}
+
+.card {
+    .card-img {
+        height: 200px;
+        overflow: hidden;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+    }
+}
+
+.filters {
+    display: flex;
+    justify-content: space-between; // Separa los grupos a los extremos
+    align-items: center;
+    max-width: 1200px;
+    margin: 30px auto; // Centra el contenedor y da espacio arriba/abajo
+    width: 90%;
+    padding: 0 10px;
+    .filter-group {
+        display: flex;
+        gap: 15px; // Espacio entre cada selector
+    }
+    // Estilo común para todos los selects
+    select {
+        padding: 8px 15px;
+        border-radius: 8px; // Bordes redondeados sutiles
+        border: 1px solid $border-color;
+        background-color: white;
+        color: $text-filter;
+        font-size: 0.9rem;
+        cursor: pointer;
+        outline: none;
+        transition: all 0.3s ease;
+        &:hover {
+            background-color: $gray-light;
+            border-color: darken($border-color, 10%);
+        }
+    }
+    // Estilo específico para el selector de ordenamiento
+    .sort {
+        select {
+            border: 1px solid transparent; // Más minimalista
+            font-weight: 500;
+            &:hover {
+                border-color: $border-color;
+            }
+        }
+    }
+}
+
+// Responsive: En celulares se apilan
+@media (max-width: 768px) {
+    .filters {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        .filter-group {
+            flex-wrap: wrap; // Los filtros se envuelven si no caben
+        }
+    }
+}

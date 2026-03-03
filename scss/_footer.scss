@@ -1,0 +1,84 @@
+$footer-bg: #ffffff;
+$footer-text-title: #333;
+$footer-text-link: #666;
+$border-color: #eeeeee;
+.main-footer {
+    background-color: $footer-bg;
+    border-top: 1px solid $border-color;
+    padding: 60px 0 20px;
+    font-family: sans-serif;
+    .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap; // Para que en móviles se apilen
+        padding: 0 20px;
+        gap: 30px;
+    }
+    .footer-col {
+        flex: 1;
+        min-width: 200px;
+        h4 {
+            color: $footer-text-title;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            li {
+                margin-bottom: 12px;
+                a {
+                    text-decoration: none;
+                    color: $footer-text-link;
+                    font-size: 0.9rem;
+                    transition: color 0.2s;
+                    &:hover {
+                        color: #1a73e8;
+                    }
+                }
+            }
+        }
+    }
+    .brand-info {
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            .logo-icon {
+                height: 24px;
+            }
+            .logo-text {
+                font-weight: bold;
+                color: #1a73e8;
+            }
+        }
+        p {
+            color: $footer-text-link;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+    }
+    .footer-bottom {
+        text-align: center;
+        margin-top: 50px;
+        padding-top: 20px;
+        border-top: 1px solid $border-color;
+        color: #999;
+        font-size: 0.8rem;
+    }
+}
+
+// Responsive
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+        .brand-info .logo {
+            justify-content: center;
+        }
+    }
+}

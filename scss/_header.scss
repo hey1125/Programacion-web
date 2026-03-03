@@ -1,0 +1,97 @@
+// Variables específicas para el header
+$header-bg: #ffffff;
+$search-bg: #f1f3f4;
+$text-main: #3c4043;
+$icon-color: #5f6368;
+$border-light: #e0e0e0;
+.main-header {
+    background-color: $header-bg;
+    border-bottom: 1px solid $border-light;
+    padding: 10px 0;
+    position: sticky; // Para que se quede fijo al hacer scroll
+    top: 0;
+    z-index: 1000;
+    .header-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+    }
+    // Estilo del Logo
+    .logo {
+        display: flex;
+        align-items: center; // Alineación vertical perfecta
+        gap: 10px; // Espacio entre la imagen y el texto
+        text-decoration: none;
+        cursor: pointer;
+        .logo-icon {
+            height: 32px; // Ajusta este tamaño según tu diseño
+            width: auto; // Mantiene la proporción original
+            object-fit: contain;
+            display: block; // Quita espacios fantasma debajo de la imagen
+        }
+        .logo-text {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1a73e8; // El azul de la marca
+            white-space: nowrap; // Evita que el nombre del logo se parta en dos líneas
+        }
+    }
+    // El buscador central
+    .search-wrapper {
+        flex: 0 1 500px; // Crece hasta 500px pero no más
+        margin: 0 20px;
+        .search-input-group {
+            background-color: $search-bg;
+            display: flex;
+            align-items: center;
+            padding: 8px 15px;
+            border-radius: 24px; // Forma de píldora
+            .search-icon {
+                color: $icon-color;
+                margin-right: 10px;
+            }
+            input {
+                border: none;
+                background: transparent;
+                width: 100%;
+                outline: none;
+                font-size: 0.9rem;
+                color: $text-main;
+                &::placeholder {
+                    color: #80868b;
+                }
+            }
+        }
+    }
+    // Iconos de la derecha
+    .user-nav {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        .nav-icon {
+            text-decoration: none;
+            font-size: 1.3rem;
+            color: $icon-color;
+        }
+        .avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid $border-light;
+        }
+    }
+}
+
+// Responsive: Ocultar buscador en móviles muy pequeños o reducirlo
+@media (max-width: 600px) {
+    .logo-text {
+        display: none;
+    } // Solo queda el icono del logo
+    .search-wrapper {
+        margin: 0 10px;
+    }
+}
