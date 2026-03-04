@@ -1,10 +1,7 @@
-$footer-bg: #ffffff;
-$footer-text-title: #333;
-$footer-text-link: #666;
-$border-color: #eeeeee;
+@import '../base/variables.scss';
 .main-footer {
     background-color: $footer-bg;
-    border-top: 1px solid $border-color;
+    border-top: 1px solid $border-light;
     padding: 60px 0 20px;
     font-family: sans-serif;
     .footer-container {
@@ -66,7 +63,7 @@ $border-color: #eeeeee;
         text-align: center;
         margin-top: 50px;
         padding-top: 20px;
-        border-top: 1px solid $border-color;
+        border-top: 1px solid $border-light;
         color: #999;
         font-size: 0.8rem;
     }

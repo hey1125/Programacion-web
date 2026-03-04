@@ -1,3 +1,4 @@
-@import 'header';
-@import 'home';
-@import 'footer';
+@import './layouts/header';
+@import './pages/home';
+@import './layouts/footer';
+@import './pages/articulo';

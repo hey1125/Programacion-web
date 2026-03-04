@@ -1,3 +1,15 @@
+/* =========================
+   COLORES GENERALES
+========================= */
+/* =========================
+   BACKGROUNDS
+========================= */
+/* =========================
+   BORDES
+========================= */
+/* =========================
+   ICONOS Y LINKS
+========================= */
 .main-header {
   background-color: #ffffff;
   border-bottom: 1px solid #e0e0e0;
@@ -85,6 +97,18 @@
     margin: 0 10px;
   }
 }
+/* =========================
+   COLORES GENERALES
+========================= */
+/* =========================
+   BACKGROUNDS
+========================= */
+/* =========================
+   BORDES
+========================= */
+/* =========================
+   ICONOS Y LINKS
+========================= */
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
@@ -250,9 +274,21 @@ body {
     flex-wrap: wrap;
   }
 }
+/* =========================
+   COLORES GENERALES
+========================= */
+/* =========================
+   BACKGROUNDS
+========================= */
+/* =========================
+   BORDES
+========================= */
+/* =========================
+   ICONOS Y LINKS
+========================= */
 .main-footer {
   background-color: #ffffff;
-  border-top: 1px solid #eeeeee;
+  border-top: 1px solid #e0e0e0;
   padding: 60px 0 20px;
   font-family: sans-serif;
 }
@@ -313,7 +349,7 @@ body {
   text-align: center;
   margin-top: 50px;
   padding-top: 20px;
-  border-top: 1px solid #eeeeee;
+  border-top: 1px solid #e0e0e0;
   color: #999;
   font-size: 0.8rem;
 }
@@ -326,6 +362,87 @@ body {
   .footer-container .brand-info .logo {
     justify-content: center;
   }
+}
+/* =========================
+   COLORES GENERALES
+========================= */
+/* =========================
+   BACKGROUNDS
+========================= */
+/* =========================
+   BORDES
+========================= */
+/* =========================
+   ICONOS Y LINKS
+========================= */
+.articulo {
+  padding: 40px;
+  display: flex;
+  gap: 50px;
+}
+.articulo__imagenes {
+  flex: 1;
+}
+.articulo__imagenes .principal {
+  width: 50%;
+  border-radius: 10px;
+}
+.articulo__imagenes .miniaturas {
+  border: 2px solid transparent;
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+.articulo__imagenes .miniaturas img {
+  border-color: #4285f4;
+  width: 70px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.articulo__imagenes .miniaturas img:hover {
+  transform: scale(1.05);
+}
+.articulo__info {
+  flex: 1;
+}
+.articulo__info h2 {
+  margin-bottom: 10px;
+}
+.articulo__info .precio {
+  color: #4285f4;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.articulo__info .descripcion {
+  color: #777;
+  margin-bottom: 20px;
+}
+.articulo__info .botones {
+  display: flex;
+  gap: 15px;
+}
+.articulo__info .botones button {
+  padding: 12px 20px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.articulo__info .botones .agregar {
+  background: #4285f4;
+  color: white;
+}
+.articulo__info .botones .agregar:hover {
+  opacity: 0.9;
+}
+.articulo__info .botones .comprar {
+  background: white;
+  border: 1px solid #e0e0e0;
+}
+.articulo__info .botones .comprar:hover {
+  background: #f8f9fa;
 }
 
 /*# sourceMappingURL=main.css.map */

@@ -1,14 +1,9 @@
-// Variables específicas para el header
-$header-bg: #ffffff;
-$search-bg: #f1f3f4;
-$text-main: #3c4043;
-$icon-color: #5f6368;
-$border-light: #e0e0e0;
+@import "../base/variables.scss";
 .main-header {
     background-color: $header-bg;
     border-bottom: 1px solid $border-light;
     padding: 10px 0;
-    position: sticky; // Para que se quede fijo al hacer scroll
+    position: sticky;
     top: 0;
     z-index: 1000;
     .header-container {
@@ -22,33 +17,33 @@ $border-light: #e0e0e0;
     // Estilo del Logo
     .logo {
         display: flex;
-        align-items: center; // Alineación vertical perfecta
-        gap: 10px; // Espacio entre la imagen y el texto
+        align-items: center;
+        gap: 10px;
         text-decoration: none;
         cursor: pointer;
         .logo-icon {
-            height: 32px; // Ajusta este tamaño según tu diseño
-            width: auto; // Mantiene la proporción original
+            height: 32px;
+            width: auto;
             object-fit: contain;
-            display: block; // Quita espacios fantasma debajo de la imagen
+            display: block;
         }
         .logo-text {
             font-size: 1.2rem;
             font-weight: 700;
-            color: #1a73e8; // El azul de la marca
-            white-space: nowrap; // Evita que el nombre del logo se parta en dos líneas
+            color: #1a73e8;
+            white-space: nowrap;
         }
     }
     // El buscador central
     .search-wrapper {
-        flex: 0 1 500px; // Crece hasta 500px pero no más
+        flex: 0 1 500px;
         margin: 0 20px;
         .search-input-group {
             background-color: $search-bg;
             display: flex;
             align-items: center;
             padding: 8px 15px;
-            border-radius: 24px; // Forma de píldora
+            border-radius: 24px;
             .search-icon {
                 color: $icon-color;
                 margin-right: 10px;
@@ -90,7 +85,7 @@ $border-light: #e0e0e0;
 @media (max-width: 600px) {
     .logo-text {
         display: none;
-    } // Solo queda el icono del logo
+    }
     .search-wrapper {
         margin: 0 10px;
     }

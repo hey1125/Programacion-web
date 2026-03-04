@@ -1,13 +1,4 @@
-// Variables
-$primary-blue: #4285f4;
-$text-dark: #333;
-$background-dark: #695959;
-$text-light: #777;
-$bg-light: #f9f9f9;
-$border-color: #e0e0e0;
-$bg-filter: #ffffff;
-$text-filter: #666;
-$gray-light: #f8f9fa;
+@import '../base/variables.scss';
 // Estilos Base
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -31,7 +22,7 @@ body {
 
 // Estilo de la Tarjeta
 .card {
-    border: 1px solid $border-color;
+    border: 1px solid $border-light;
     border-radius: 12px;
     overflow: hidden;
     transition: transform 0.3s ease;
@@ -131,21 +122,21 @@ body {
 
 .filters {
     display: flex;
-    justify-content: space-between; // Separa los grupos a los extremos
+    justify-content: space-between;
     align-items: center;
     max-width: 1200px;
-    margin: 30px auto; // Centra el contenedor y da espacio arriba/abajo
+    margin: 30px auto;
     width: 90%;
     padding: 0 10px;
     .filter-group {
         display: flex;
-        gap: 15px; // Espacio entre cada selector
+        gap: 15px;
     }
     // Estilo común para todos los selects
     select {
         padding: 8px 15px;
-        border-radius: 8px; // Bordes redondeados sutiles
-        border: 1px solid $border-color;
+        border-radius: 8px;
+        border: 1px solid $border-light;
         background-color: white;
         color: $text-filter;
         font-size: 0.9rem;
@@ -154,7 +145,7 @@ body {
         transition: all 0.3s ease;
         &:hover {
             background-color: $gray-light;
-            border-color: darken($border-color, 10%);
+            border-color: darken($border-light, 10%);
         }
     }
     // Estilo específico para el selector de ordenamiento
@@ -163,7 +154,7 @@ body {
             border: 1px solid transparent; // Más minimalista
             font-weight: 500;
             &:hover {
-                border-color: $border-color;
+                border-color: $border-light;
             }
         }
     }

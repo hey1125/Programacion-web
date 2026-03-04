@@ -1,0 +1,70 @@
+@import '../base/variables.scss';
+.articulo {
+    padding: 40px;
+    display: flex;
+    gap: 50px;
+    &__imagenes {
+        flex: 1;
+        .principal {
+            width: 50%;
+            border-radius: 10px;
+        }
+        .miniaturas {
+            border: 2px solid transparent;
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+            img {
+                border-color: $primary-blue;
+                width: 70px;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: 0.3s;
+                &:hover {
+                    transform: scale(1.05);
+                }
+            }
+        }
+    }
+    &__info {
+        flex: 1;
+        h2 {
+            margin-bottom: 10px;
+        }
+        .precio {
+            color: $primary-blue;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .descripcion {
+            color: $text-light;
+            margin-bottom: 20px;
+        }
+        .botones {
+            display: flex;
+            gap: 15px;
+            button {
+                padding: 12px 20px;
+                border-radius: 6px;
+                border: none;
+                cursor: pointer;
+                transition: 0.3s;
+            }
+            .agregar {
+                background: $primary-blue;
+                color: white;
+                &:hover {
+                    opacity: 0.9;
+                }
+            }
+            .comprar {
+                background: white;
+                border: 1px solid $border-light;
+                &:hover {
+                    background: $gray-light;
+                }
+            }
+        }
+    }
+}
