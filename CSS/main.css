@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* =========================
    COLORES GENERALES
 ========================= */
@@ -97,6 +98,25 @@
     margin: 0 10px;
   }
 }
+.header__logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+}
+
+.logo-text {
+  font-weight: bold;
+  font-size: 18px;
+  color: #333;
+}
+
 /* =========================
    COLORES GENERALES
 ========================= */
@@ -443,6 +463,40 @@ body {
 }
 .articulo__info .botones .comprar:hover {
   background: #f8f9fa;
+}
+
+.reseñas {
+  margin: 60px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.reseñas h3 {
+  font-size: 22px;
+}
+
+.reseña {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  background: white;
+}
+.reseña__header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.reseña__usuario {
+  font-size: 20px;
+  font-weight: bold;
+}
+.reseña__estrellas {
+  color: gold;
+}
+.reseña__texto {
+  font-size: 16px;
+  font-weight: bold;
+  color: #777;
 }
 
 /*# sourceMappingURL=main.css.map */

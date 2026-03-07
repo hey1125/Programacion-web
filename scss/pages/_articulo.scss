@@ -68,3 +68,37 @@
         }
     }
 }
+
+.reseñas {
+    margin: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    h3 {
+        font-size: 22px;
+    }
+}
+
+.reseña {
+    border: 1px solid $border-light;
+    border-radius: 8px;
+    padding: 20px;
+    background: white;
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+    &__usuario {
+        font-size: 20px;
+        font-weight: bold;
+    }
+    &__estrellas {
+        color: gold;
+    }
+    &__texto {
+        font-size: 16px;
+        font-weight: bold;
+        color: $text-light;
+    }
+}
