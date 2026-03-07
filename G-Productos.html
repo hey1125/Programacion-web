@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Productos - Commerce Connect</title>
+    <link rel="icon" href="img/NextGen Web Labs.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="CSS/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+<div id="header-placeholder"></div>
+
+<main class="admin-panel">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <h3>Administración</h3>
+
+        <ul>
+            <li class="active">Gestión de Productos</li>
+            <li>Gestión de Categorías</li>
+            <li>Gestión de Órdenes</li>
+        </ul>
+    </aside>
+
+
+    <!-- CONTENIDO -->
+    <section class="gestion-productos">
+
+        <div class="titulo-seccion">
+            <h2>Gestión de Productos</h2>
+
+            <button class="btn-nuevo">+ Añadir Nuevo Producto</button>
+        </div>
+
+
+        <!-- BUSCADOR -->
+        <div class="buscador">
+            <input type="text" placeholder="Buscar productos...">
+
+            <select>
+                <option>Categoría</option>
+                <option>Electrónica</option>
+                <option>Accesorios PC</option>
+                <option>Wearables</option>
+                <option>Hogar Inteligente</option>
+            </select>
+        </div>
+
+
+        <!-- TABLA -->
+        <table class="tabla-productos">
+
+            <thead>
+                <tr>
+                    <th>Imagen</th>
+                    <th>Nombre</th>
+                    <th>Categoría</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+
+            <tbody id="tabla-body">
+
+                <!-- PRODUCTO -->
+                <tr>
+                    <td>
+                        <img src="img/Audifonos.jpg" class="producto-img">
+                    </td>
+
+                    <td>Auriculares Inalámbricos Pro</td>
+                    <td>Electrónica</td>
+                    <td>$99.99</td>
+                    <td>150</td>
+
+                    <td>
+                        <button class="editar">✏️</button>
+                        <button class="eliminar">🗑️</button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <img src="img/Teclado.jpg" class="producto-img">
+                    </td>
+
+                    <td>Teclado Mecánico RGB</td>
+                    <td>Accesorios PC</td>
+                    <td>$75.00</td>
+                    <td>80</td>
+
+                    <td>
+                        <button class="editar">✏️</button>
+                        <button class="eliminar">🗑️</button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <img src="img/Mause.jpg" class="producto-img">
+                    </td>
+                    <td>Mouse Gamer Inalámbrico</td>
+                    <td>Accesorios PC</td>
+                    <td>$45.99</td>
+                    <td>110</td>
+                <td>
+                    <button class="editar">✏️</button>
+                    <button class="eliminar">🗑️</button>
+                </td>
+                </tr>
+
+
+                <tr>
+                    <td>
+                        <img src="img/smartwatch.jpg" class="producto-img">
+                    </td>
+                    <td>Smartwatch Deportivo X1</td>
+                    <td>Wearables</td>
+                    <td>$120.50</td>
+                    <td>120</td>
+                <td>
+                    <button class="editar">✏️</button>
+                    <button class="eliminar">🗑️</button>
+                </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <img src="img/camara.jpg" class="producto-img">
+                    </td>
+                    <td>Cámara IP de Seguridad</td>
+                    <td>Hogar Inteligente</td>
+                    <td>$60.00</td>
+                    <td>200</td>
+                <td>
+                    <button class="editar">✏️</button>
+                    <button class="eliminar">🗑️</button>
+                </td>
+                </tr>
+
+                <tr>
+                <td>
+                    <img src="img/microfono.jpg" class="producto-img">
+                </td>
+                    <td>Micrófono Condensador USB</td>
+                    <td>Audio Profesional</td>
+                    <td>$55.75</td>
+                    <td>90</td>
+                <td>
+                    <button class="editar">✏️</button>
+                    <button class="eliminar">🗑️</button>
+                </td>
+                </tr>
+
+                <div class="d-flex gap-3 fs-5 text-muted">
+                    <i class="bi bi-facebook"></i>
+                    <i class="bi bi-twitter-x"></i>
+                    <i class="bi bi-instagram"></i>
+                </div>
+
+            </tbody>
+
+        </table>
+
+    </section>
+
+</main>
+
+
+<div id="footer-placeholder"></div>
+
+<script src="js/header_loader.js"></script>
+<script src="js/footer_loader.js"></script>
+<script src="js/gestion_productos.js"></script>
+
+</body>
+</html>
