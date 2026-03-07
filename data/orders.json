@@ -1,0 +1,8 @@
+[
+  { "id": "ORD-2023-001", "fecha": "2023-10-26", "total": 125.00, "estado": "Entregado" },
+  { "id": "ORD-2023-002", "fecha": "2023-11-01", "total": 45.99,  "estado": "Enviado" },
+  { "id": "ORD-2023-003", "fecha": "2023-11-15", "total": 29.99,  "estado": "Pendiente" },
+  { "id": "ORD-2023-004", "fecha": "2023-12-01", "total": 239.00, "estado": "Entregado" },
+  { "id": "ORD-2023-005", "fecha": "2023-12-10", "total": 15.50,  "estado": "Cancelado" },
+  { "id": "ORD-2024-006", "fecha": "2024-01-08", "total": 89.90,  "estado": "Entregado" }
+]
