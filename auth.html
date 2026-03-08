@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Autenticación | Commerce Connect</title>
+
+    <link rel="stylesheet" href="CSS/main.css">
+</head>
+
+<body class="auth-page">
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-logo">
+                <img src="img/NextGen Web Labs_NoFondo.png" alt="logo">
+                <h2>Commerce Connect</h2>
+            </div>
+
+            <div class="auth-tabs">
+                <button id="tabLogin" class="auth-tab active">Iniciar sesión</button>
+                <button id="tabRegister" class="auth-tab">Registrarse</button>
+            </div>
+
+            <div class="forms-wrapper">
+                <form id="loginForm" class="auth-form active">
+                    <label>Correo electrónico</label>
+                    <input type="email" id="loginEmail" placeholder="tu@ejemplo.com" required>
+
+                    <label>Contraseña</label>
+                    <input type="password" id="loginPassword" placeholder="********" required>
+
+                    <button type="submit" class="auth-btn">
+                        Iniciar sesión
+                    </button>
+
+                    <a href="#" class="auth-forgot">
+                        ¿Olvidaste tu contraseña?
+                    </a>
+                </form>
+
+                <form id="registerForm" class="auth-form">
+                    <label>Correo electrónico</label>
+                    <input type="email" id="registerEmail" placeholder="tu@ejemplo.com" required>
+
+                    <label>Contraseña</label>
+                    <input type="password" id="registerPassword" placeholder="********" required>
+
+                    <button type="submit" class="auth-btn">
+                        Crear cuenta
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="JS/auth.js"></script>
+</body>
+</html>
