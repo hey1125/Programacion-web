@@ -1,29 +1,44 @@
-/* CSS/orders.css */
-
-/* Evita que el fondo/estilos globales del equipo afecten esta vista */
-body{
-  background: #F7F9FC !important;
-  background-image: none !important;
+.orders-page {
+  background: #F7F9FC;
+  min-height: 70vh;
 }
 
-/* iconito cuadrado como el mockup */
-.cc-icon{
-  width: 22px;
-  height: 22px;
-  border-radius: 6px;
-  background: #3D7AF5;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-size: 12px;
+.orders-filters input,
+.orders-filters select {
+  min-width: 180px;
 }
 
-/* Badges suaves */
-.badge-soft-success { background: rgba(34,139,34,.12); color: #228B22; border: 1px solid rgba(34,139,34,.18); }
-.badge-soft-info    { background: rgba(34,100,139,.12); color: #22648B; border: 1px solid rgba(34,100,139,.18); }
-.badge-soft-warning { background: rgba(240,165,0,.15);  color: #B58100; border: 1px solid rgba(240,165,0,.22); }
-.badge-soft-danger  { background: rgba(229,57,53,.12);  color: #E53935; border: 1px solid rgba(229,57,53,.18); }
-.badge-soft-muted   { background: rgba(103,111,124,.12); color: #676F7C; border: 1px solid rgba(103,111,124,.18); }
+.badge-soft-success {
+  background: rgba(34, 139, 34, 0.12);
+  color: #228B22;
+  border: 1px solid rgba(34, 139, 34, 0.18);
+}
 
-.table td, .table th { vertical-align: middle; }
+.badge-soft-info {
+  background: rgba(34, 100, 139, 0.12);
+  color: #22648B;
+  border: 1px solid rgba(34, 100, 139, 0.18);
+}
+
+.badge-soft-warning {
+  background: rgba(240, 165, 0, 0.15);
+  color: #B58100;
+  border: 1px solid rgba(240, 165, 0, 0.22);
+}
+
+.badge-soft-danger {
+  background: rgba(229, 57, 53, 0.12);
+  color: #E53935;
+  border: 1px solid rgba(229, 57, 53, 0.18);
+}
+
+.badge-soft-muted {
+  background: rgba(103, 111, 124, 0.12);
+  color: #676F7C;
+  border: 1px solid rgba(103, 111, 124, 0.18);
+}
+
+.table td,
+.table th {
+  vertical-align: middle;
+}
