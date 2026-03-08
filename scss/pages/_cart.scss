@@ -1,0 +1,178 @@
+.cart {
+
+    padding: 40px 80px;
+
+}
+
+.cart-title {
+
+    font-size: 28px;
+    margin-bottom: 30px;
+
+}
+
+.cart-grid {
+
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+
+}
+
+/* ITEMS */
+
+.cart-item {
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 20px;
+    border-radius: 10px;
+    background: #fff;
+
+    margin-bottom: 20px;
+
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+
+}
+
+.cart-item img {
+
+    width: 80px;
+    border-radius: 8px;
+
+}
+
+.cart-info {
+
+    flex: 1;
+    margin-left: 20px;
+
+}
+
+.price {
+
+    color: #3b6ff5;
+    font-weight: 600;
+
+}
+
+/* CANTIDAD */
+
+.quantity {
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+
+}
+
+.qty-btn {
+
+    width: 30px;
+    height: 30px;
+
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 6px;
+
+    cursor: pointer;
+
+}
+
+.quantity input {
+
+    width: 40px;
+    text-align: center;
+
+    border: 1px solid #ddd;
+    border-radius: 6px;
+
+}
+
+/* DELETE */
+
+.delete {
+
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+
+}
+
+/* SIDEBAR */
+
+.summary,
+.shipping,
+.payment {
+
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+
+}
+
+.summary-row {
+
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+
+}
+
+.summary-row.total {
+
+    font-weight: 700;
+    font-size: 18px;
+
+}
+
+.confirm-btn {
+
+    width: 100%;
+    margin-top: 15px;
+    padding: 12px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #3b6ff5;
+    color: white;
+
+    cursor: pointer;
+
+}
+
+/* FORM */
+
+.shipping input {
+
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+
+    border: 1px solid #ddd;
+    border-radius: 6px;
+
+}
+
+.form-row {
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+
+}
+
+.payment label {
+
+    display: block;
+    margin-top: 10px;
+
+}
