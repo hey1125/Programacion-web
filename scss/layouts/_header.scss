@@ -1,4 +1,4 @@
-@import "../base/variables.scss";
+@use "../base/variables.scss" as *;
 .main-header {
     background-color: $header-bg;
     border-bottom: 1px solid $border-light;
@@ -115,12 +115,22 @@
     align-items: center;
 }
 
-.avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+.user-avatar-icon {
+    font-size: 1.8rem; // Tamaño del icono
+    color: $icon-color; // Usando tu variable
     cursor: pointer;
-    border: 2px solid $border-light;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:hover { color: $primary-blue; }
+
+    &:hover {
+        color: $primary-blue; // Cambia al azul al pasar el mouse
+    }
+
+    // Para asegurar que el menú dropdown se posicione bien respecto al icono
+    position: relative; 
 }
 
 .dropdown {
@@ -166,4 +176,79 @@
 .search-icon{
     color:$icon-color;
     margin-right:8px;
+}
+.search-input-group {
+    position: relative; // Para que el dropdown se posicione justo debajo
+
+    #searchInput {
+        background-color: $search-bg;
+        color: $text-main;
+        border: 1px solid transparent;
+        transition: all 0.3s ease;
+
+        &:focus {
+            background-color: $header-bg;
+            border-color: $border-light;
+            box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+        }
+    }
+
+    .suggestions-dropdown {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: $header-bg;
+        border: 1px solid $border-light;
+        border-top: none;
+        border-radius: 0 0 8px 8px;
+        box-shadow: 0 4px 6px rgba(32, 33, 36, 0.1);
+        z-index: 1000;
+        display: none; // Se activa por JS
+        max-height: 400px;
+        overflow-y: auto;
+
+        .suggestion-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background 0.2s;
+            border-bottom: 1px solid $border-soft;
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            &:hover {
+                background-color: $gray-light;
+            }
+
+            img {
+                width: 40px;
+                height: 40px;
+                object-fit: cover;
+                border-radius: 4px;
+                margin-right: 12px;
+                background-color: $search-bg;
+            }
+
+            .info {
+                display: flex;
+                flex-direction: column;
+
+                .name {
+                    font-size: 0.9rem;
+                    color: $text-dark;
+                    font-weight: 500;
+                }
+
+                .price {
+                    font-size: 0.8rem;
+                    color: $primary-blue;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
 }

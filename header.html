@@ -13,7 +13,8 @@
                 <span class="search-icon">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </span>
-                <input type="text" placeholder="Buscar productos...">
+                <input type="text" id="searchInput" placeholder="Buscar productos..." autocomplete="off">
+                <div id="suggestions-box" class="suggestions-dropdown"></div>
             </div>
         </div>
 
@@ -23,7 +24,9 @@
                 <i class="fa-solid fa-cart-shopping"></i>
             </a>
 
-            <img src="./img/Juana.jpeg" alt="Usuario" class="avatar" onclick="toggleMenu()">
+            <div class="user-avatar-icon" onclick="toggleMenu()">
+                <i class="fa-solid fa-circle-user"></i>
+            </div>
 
             <div id="dropdownMenu" class="dropdown">
                 <a href="./orders.html">

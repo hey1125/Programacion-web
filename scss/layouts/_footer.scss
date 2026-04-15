@@ -1,4 +1,4 @@
-@import '../base/variables.scss';
+@use '../base/variables.scss' as *;
 .main-footer {
     background-color: $footer-bg;
     border-top: 1px solid $border-light;

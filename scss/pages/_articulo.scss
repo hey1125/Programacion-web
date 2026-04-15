@@ -1,4 +1,4 @@
-@import '../base/variables.scss';
+@use '../base/variables.scss' as *;;
 .articulo {
     padding: 40px;
     display: flex;

@@ -2,21 +2,27 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const path = require('path'); 
 
- 
 const app = express();
- 
+
 // Middlewares globales
 app.use(cors());
 app.use(express.json());
- 
-// Rutas
+
+
+
+
+// Rutas de la API (Express las revisará primero)
 app.use('/api/users',      require('./routes/userRoutes'));
 app.use('/api/products',   require('./routes/productRoutes'));
 app.use('/api/categories', require('./routes/categoryRoutes'));
 app.use('/api/cart',       require('./routes/cartRoutes'));
 app.use('/api/orders',     require('./routes/orderRoutes'));
- 
+
+
+app.use(express.static(path.join(__dirname))); 
+
 // Ruta de prueba
 app.get('/', (req, res) => res.json({ message: 'API funcionando correctamente' }));
  

@@ -1,7 +1,8 @@
-@import './layouts/header';
-@import './pages/home';
-@import './layouts/footer';
-@import './pages/articulo';
-@import './pages/G-Productos';
-@import "./pages/auth";
-@import "./pages/cart";
+// Cambia esto:
+@use './layouts/header';
+@use './pages/home';
+@use './layouts/footer';
+@use './pages/articulo';
+@use './pages/G-Productos';
+@use './pages/cart';
+

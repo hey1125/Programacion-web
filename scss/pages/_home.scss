@@ -1,4 +1,5 @@
-@import '../base/variables.scss';
+@use '../base/variables.scss' as *;
+@use "sass:color";
 // Estilos Base
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -69,7 +70,7 @@ body {
             margin-top: 15px;
             font-weight: 600;
             &:hover {
-                background-color: darken($primary-blue, 10%);
+                background-color: color.adjust($primary-blue, $lightness: -10%);
             }
         }
     }
@@ -145,7 +146,7 @@ body {
         transition: all 0.3s ease;
         &:hover {
             background-color: $gray-light;
-            border-color: darken($border-light, 10%);
+            border-color: color.adjust($border-light, $lightness: -10%);
         }
     }
     // Estilo específico para el selector de ordenamiento
