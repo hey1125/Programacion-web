@@ -1,163 +1,112 @@
-(() => {
-  "use strict";
+const ordersTbody = document.getElementById("ordersTbody");
+const emptyState = document.getElementById("emptyState");
+const searchOrder = document.getElementById("searchOrder");
+const filterStatus = document.getElementById("filterStatus");
 
-  const tbody = document.getElementById("ordersTbody");
-  const pagination = document.getElementById("ordersPagination");
-  const emptyState = document.getElementById("emptyState");
+let allOrders = [];
 
-  const filterStatus = document.getElementById("filterStatus");
-  const searchOrder = document.getElementById("searchOrder");
+const statusMap = {
+  pending: "Pendiente",
+  processing: "Procesando",
+  shipped: "Enviado",
+  delivered: "Entregado",
+  cancelled: "Cancelado"
+};
 
-  const PAGE_SIZE = 5;
+function formatDate(dateString) {
+  return new Date(dateString).toLocaleDateString("es-CR");
+}
 
-  let allOrders = [];
-  let filteredOrders = [];
-  let currentPage = 1;
+function formatCurrency(amount) {
+  return `₡ ${Number(amount).toLocaleString("es-CR", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  })}`;
+}
 
-  function formatMoney(value) {
-    return `$${Number(value).toFixed(2)}`;
+function getStatusBadge(status) {
+  const label = statusMap[status] || status;
+
+  let badgeClass = "bg-secondary";
+  if (status === "pending") badgeClass = "bg-warning text-dark";
+  if (status === "processing") badgeClass = "bg-info text-dark";
+  if (status === "shipped") badgeClass = "bg-primary";
+  if (status === "delivered") badgeClass = "bg-success";
+  if (status === "cancelled") badgeClass = "bg-danger";
+
+  return `<span class="badge ${badgeClass}">${label}</span>`;
+}
+
+function renderOrders(orders) {
+  ordersTbody.innerHTML = "";
+
+  if (!orders.length) {
+    emptyState.classList.remove("d-none");
+    return;
   }
 
-  function badgeClass(status) {
-    switch (status) {
-      case "Entregado": return "badge-soft-success";
-      case "Enviado": return "badge-soft-info";
-      case "Pendiente": return "badge-soft-warning";
-      case "Cancelado": return "badge-soft-danger";
-      default: return "badge-soft-muted";
-    }
-  }
+  emptyState.classList.add("d-none");
 
-  function getEstado(o) {
-    return o.estado ?? o.Estado ?? o.status ?? o.estadoOrden ?? "";
-  }
+  orders.forEach(order => {
+    const row = document.createElement("tr");
 
-  function getId(o) {
-    return o.id ?? o.ID ?? o.idOrden ?? "";
-  }
+    row.innerHTML = `
+      <td>${order._id}</td>
+      <td>${formatDate(order.createdAt)}</td>
+      <td>${formatCurrency(order.totalPrice)}</td>
+      <td class="text-end">${getStatusBadge(order.status)}</td>
+    `;
 
-  function getFecha(o) {
-    return o.fecha ?? o.Fecha ?? "";
-  }
+    ordersTbody.appendChild(row);
+  });
+}
 
-  function getTotal(o) {
-    return o.total ?? o.Total ?? 0;
-  }
+function applyFilters() {
+  const searchValue = searchOrder.value.toLowerCase();
+  const selectedStatus = filterStatus.value;
 
-  function applyFilters() {
-    const status = filterStatus.value;
-    const q = (searchOrder.value || "").trim().toLowerCase();
+  const filtered = allOrders.filter(order => {
+    const matchesSearch = order._id.toLowerCase().includes(searchValue);
 
-    filteredOrders = allOrders.filter(o => {
-      const estado = getEstado(o);
-      const id = String(getId(o)).toLowerCase();
+    const translatedStatus = statusMap[order.status];
+    const matchesStatus =
+      selectedStatus === "ALL" || translatedStatus === selectedStatus;
 
-      const okStatus = (status === "ALL") ? true : estado === status;
-      const okQuery = q ? id.includes(q) : true;
+    return matchesSearch && matchesStatus;
+  });
 
-      return okStatus && okQuery;
+  renderOrders(filtered);
+}
+
+async function loadMyOrders() {
+  try {
+    const token = localStorage.getItem("token"); 
+
+const response = await fetch("http://localhost:5000/api/orders/my-orders", {      headers: {
+        Authorization: `Bearer ${token}`
+      }
     });
 
-    currentPage = 1;
-    render();
-  }
-
-  function pagedItems() {
-    const start = (currentPage - 1) * PAGE_SIZE;
-    return filteredOrders.slice(start, start + PAGE_SIZE);
-  }
-
-  function renderTable() {
-    tbody.innerHTML = "";
-
-    if (filteredOrders.length === 0) {
-      emptyState.classList.remove("d-none");
-      return;
-    }
-    emptyState.classList.add("d-none");
-
-    for (const o of pagedItems()) {
-      const id = getId(o);
-      const fecha = getFecha(o);
-      const total = getTotal(o);
-      const estado = getEstado(o);
-
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td class="fw-semibold">${id}</td>
-        <td class="text-muted">${fecha}</td>
-        <td>${formatMoney(total)}</td>
-        <td class="text-end">
-          <span class="badge rounded-pill ${badgeClass(estado)}">${estado}</span>
-        </td>
-      `;
-      tbody.appendChild(tr);
-    }
-  }
-
-  function renderPagination() {
-    pagination.innerHTML = "";
-
-    const totalPages = Math.max(1, Math.ceil(filteredOrders.length / PAGE_SIZE));
-
-    const prev = document.createElement("li");
-    prev.className = `page-item ${currentPage === 1 ? "disabled" : ""}`;
-    prev.innerHTML = `<a class="page-link" href="#">Anterior</a>`;
-    prev.addEventListener("click", (e) => {
-      e.preventDefault();
-      if (currentPage > 1) { currentPage--; render(); }
-    });
-    pagination.appendChild(prev);
-
-    for (let i = 1; i <= totalPages; i++) {
-      const li = document.createElement("li");
-      li.className = `page-item ${i === currentPage ? "active" : ""}`;
-      li.innerHTML = `<a class="page-link" href="#">${i}</a>`;
-      li.addEventListener("click", (e) => {
-        e.preventDefault();
-        currentPage = i;
-        render();
-      });
-      pagination.appendChild(li);
+    if (!response.ok) {
+      throw new Error("Error al cargar órdenes");
     }
 
-    const next = document.createElement("li");
-    next.className = `page-item ${currentPage === totalPages ? "disabled" : ""}`;
-    next.innerHTML = `<a class="page-link" href="#">Siguiente</a>`;
-    next.addEventListener("click", (e) => {
-      e.preventDefault();
-      if (currentPage < totalPages) { currentPage++; render(); }
-    });
-    pagination.appendChild(next);
-  }
+    const data = await response.json();
 
-  function render() {
-    renderTable();
-    renderPagination();
-  }
+    allOrders = data;
+    renderOrders(allOrders);
 
-  async function loadOrders() {
-    const res = await fetch("data/orders.json");
-    if (!res.ok) throw new Error("No se pudo cargar data/orders.json. Revisá rutas.");
-
-    allOrders = await res.json();
-
-    // ordena por fecha desc (si viene fecha vacía, no revienta)
-    allOrders.sort((a, b) => (getFecha(a) < getFecha(b) ? 1 : -1));
-
-    filteredOrders = [...allOrders];
-    render();
-  }
-
-  filterStatus.addEventListener("change", applyFilters);
-  searchOrder.addEventListener("input", applyFilters);
-
-  loadOrders().catch(err => {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
     emptyState.classList.remove("d-none");
     emptyState.innerHTML = `
       <div class="fs-1 mb-2">⚠️</div>
-      <p class="mb-0">Error cargando órdenes. Revisá la ruta <code>data/orders.json</code>.</p>
+      <p>Error cargando órdenes</p>
     `;
-  });
-})();
+  }
+}
+
+searchOrder.addEventListener("input", applyFilters);
+filterStatus.addEventListener("change", applyFilters);
+
+document.addEventListener("DOMContentLoaded", loadMyOrders);
