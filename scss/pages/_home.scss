@@ -80,30 +80,74 @@ body {
 .hero {
     border-radius: 30px;
     overflow: hidden;
+    /* Mantenemos tu gradiente y la ruta de la imagen */
     background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('../img/tendencias.jpg');
     background-color: $background-dark;
-    background-size: cover;
-    background-position: right center;
+    
+    /* CAMBIO CLAVE: Cover asegura que la imagen llene todo el div sin deformarse */
+    background-size: cover; 
+    
+    /* CAMBIO CLAVE: Centrar la imagen para que los protagonistas siempre se vean */
+    background-position: center; 
     background-repeat: no-repeat;
-    width: 70%;
+    
+    /* MEJORA: Más ancho para aprovechar el espacio */
+    width: 90%; 
+    max-width: 1400px; // Evita que se haga gigante en pantallas 4K
     margin: 20px auto;
-    height: 400px;
+    
+    /* Ajuste de altura para que sea proporcional */
+    height: 550px; 
+    background-size: cover; 
+    background-position: top;
+    
     display: flex;
     align-items: center;
-    padding: 0 10%;
+    
+    /* Reducimos el padding lateral para que el texto no esté tan apretado */
+    padding: 0 5%; 
+
     .hero-content {
         max-width: 500px;
         color: #222;
+        /* Un pequeño fondo semi-transparente ayuda si la imagen es muy clara */
+        background: rgba(255, 255, 255, 0.7); 
+        padding: 20px;
+        border-radius: 15px;
+
         h1 {
             font-size: 2.5rem;
             margin-bottom: 15px;
         }
+
         .btn-primary {
             background-color: $primary-blue;
             color: white;
             border: none;
             padding: 10px 25px;
             border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+
+            &:hover {
+                background-color: color.adjust($primary-blue, $lightness: -10%);
+            }
+        }
+    }
+}
+
+/* RESPONSIVE: Para celulares */
+@media (max-width: 768px) {
+    .hero {
+        width: 100%;
+        border-radius: 0; 
+        height: auto;
+        padding: 40px 20px;
+        background-position: center;
+        
+        .hero-content {
+            text-align: center;
+            margin: 0 auto;
         }
     }
 }

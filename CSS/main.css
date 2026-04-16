@@ -334,21 +334,34 @@ body {
 .hero {
   border-radius: 30px;
   overflow: hidden;
+  /* Mantenemos tu gradiente y la ruta de la imagen */
   background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("../img/tendencias.jpg");
   background-color: #695959;
+  /* CAMBIO CLAVE: Cover asegura que la imagen llene todo el div sin deformarse */
   background-size: cover;
-  background-position: right center;
+  /* CAMBIO CLAVE: Centrar la imagen para que los protagonistas siempre se vean */
+  background-position: center;
   background-repeat: no-repeat;
-  width: 70%;
+  /* MEJORA: Más ancho para aprovechar el espacio */
+  width: 90%;
+  max-width: 1400px;
   margin: 20px auto;
-  height: 400px;
+  /* Ajuste de altura para que sea proporcional */
+  height: 550px;
+  background-size: cover;
+  background-position: top;
   display: flex;
   align-items: center;
-  padding: 0 10%;
+  /* Reducimos el padding lateral para que el texto no esté tan apretado */
+  padding: 0 5%;
 }
 .hero .hero-content {
   max-width: 500px;
   color: #222;
+  /* Un pequeño fondo semi-transparente ayuda si la imagen es muy clara */
+  background: rgba(255, 255, 255, 0.7);
+  padding: 20px;
+  border-radius: 15px;
 }
 .hero .hero-content h1 {
   font-size: 2.5rem;
@@ -360,8 +373,27 @@ body {
   border: none;
   padding: 10px 25px;
   border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.hero .hero-content .btn-primary:hover {
+  background-color: rgb(17.805, 101.89, 241.195);
 }
 
+/* RESPONSIVE: Para celulares */
+@media (max-width: 768px) {
+  .hero {
+    width: 100%;
+    border-radius: 0;
+    height: auto;
+    padding: 40px 20px;
+    background-position: center;
+  }
+  .hero .hero-content {
+    text-align: center;
+    margin: 0 auto;
+  }
+}
 .card .card-img {
   height: 200px;
   overflow: hidden;
@@ -855,6 +887,120 @@ body {
 .payment label {
   display: block;
   margin-top: 10px;
+}
+
+.auth-page {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f4f6fb;
+}
+
+.auth-card {
+  width: 420px;
+  background: white;
+  padding: 35px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.auth-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.auth-logo img {
+  width: 40px;
+}
+.auth-logo h2 {
+  color: #3b6ff5;
+  font-size: 20px;
+}
+
+.auth-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.auth-tab {
+  border: none;
+  padding: 8px 20px;
+  border-radius: 20px;
+  background: #e5e7eb;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.auth-tab.active {
+  background: #3b6ff5;
+  color: white;
+}
+
+.forms-wrapper {
+  position: relative;
+}
+
+.auth-form {
+  display: none;
+  flex-direction: column;
+  text-align: left;
+  animation: fade 0.3s ease;
+}
+
+.auth-form.active {
+  display: flex;
+}
+
+.auth-form label {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.auth-form input {
+  margin-top: 5px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+}
+
+.auth-btn {
+  margin-top: 20px;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: #3b6ff5;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.auth-btn:hover {
+  background: #2f5ee6;
+}
+
+.auth-forgot {
+  margin-top: 12px;
+  font-size: 14px;
+  text-align: center;
+  text-decoration: none;
+  color: #3b6ff5;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /*# sourceMappingURL=main.css.map */
