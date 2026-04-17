@@ -3,11 +3,9 @@ const API_URL = `${window.location.origin}/api/products`;
 async function cargarArticulo() {
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('id');
-    
     const container = document.getElementById('articulo-container');
-    const reseñasContainer = document.getElementById('reseñas-container');
 
-    if (!container || !reseñasContainer) return;
+    if (!container) return;
     if (!id) {
         container.innerHTML = "<h2>Producto no encontrado</h2>";
         return;
@@ -15,10 +13,9 @@ async function cargarArticulo() {
 
     try {
         const res = await fetch(`${API_URL}/${id}`);
-        if (!res.ok) throw new Error("Error en la petición");
+        if (!res.ok) throw new Error("Error al obtener el producto");
         const p = await res.json();
 
-        // Inyectamos la estructura que definiste en tu SCSS
         container.innerHTML = `
             <div class="articulo">
                 <div class="articulo__imagenes">
@@ -31,34 +28,71 @@ async function cargarArticulo() {
                 <div class="articulo__info">
                     <h2>${p.name}</h2>
                     <p class="precio">$${p.price.toLocaleString()}</p>
-                    <p class="descripcion">${p.description || 'Sin descripción disponible.'}</p>
+                    <p class="description">${p.description || 'Sin descripción disponible.'}</p>
                     
                     <div class="botones">
-                        <button class="agregar"><i class="fa-solid fa-cart-plus"></i> Agregar al carrito</button>
-                        <button class="comprar">Comprar ahora</button>
+                        <button class="agregar" id="btn-add">
+                            <i class="fa-solid fa-cart-plus"></i> Agregar al carrito
+                        </button>
                     </div>
                 </div>
             </div>
         `;
 
-        // Renderizar reseñas si existen
-        if (p.reviews && p.reviews.length > 0) {
-            reseñasContainer.innerHTML = p.reviews.map(r => `
-                <div class="reseña">
-                    <div class="reseña__header">
-                        <span class="reseña__usuario">${r.user}</span>
-                        <span class="reseña__estrellas">${'★'.repeat(r.rating)}</span>
-                    </div>
-                    <p class="reseña__texto">${r.comment}</p>
-                </div>
-            `).join('');
-        } else {
-            reseñasContainer.innerHTML = '<p class="reseña__texto">No hay reseñas aún.</p>';
+        // Evento para el carrito
+        document.getElementById('btn-add').addEventListener('click', () => {
+            agregarAlCarrito(p);
+        });
+
+    } catch (error) {
+        console.error("Error:", error);
+        container.innerHTML = "<h2>Error al cargar el producto</h2>";
+    }
+}
+
+async function agregarAlCarrito(producto) {
+    const token = localStorage.getItem('token');
+
+    // 1. Verificamos si el usuario está logueado
+    if (!token) {
+        alert("Debes iniciar sesión para añadir productos al carrito.");
+        window.location.href = 'login.html'; // Opcional: redirigir al login
+        return;
+    }
+
+    try {
+        // 2. Enviamos el ID del producto a tu ruta de carrito
+        // Ajusta la URL según tu backend (ej: /api/cart o /api/users/cart)
+       const response = await fetch(`${window.location.origin}/api/cart`, { 
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify({
+        productId: producto._id,
+        quantity: 1
+    })
+});
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || "Error al añadir al carrito");
+        }
+
+        const resultado = await response.json();
+
+        // 3. Feedback visual
+        alert(`¡${producto.name} se añadió a tu carrito en la nube!`);
+        
+        // Si tienes un contador en el header, podrías actualizarlo aquí
+        if (typeof actualizarContadorCarritoAPI === 'function') {
+            actualizarContadorCarritoAPI();
         }
 
     } catch (error) {
         console.error("Error:", error);
-        container.innerHTML = "<h2>Error al conectar con el servidor</h2>";
+        alert("No se pudo agregar el producto: " + error.message);
     }
 }
 

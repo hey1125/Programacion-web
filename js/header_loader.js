@@ -8,13 +8,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 return response.text();
             })
             .then(data => {
+                // PASO 1: Inyectar el HTML físicamente en la página
                 headerContainer.innerHTML = data;
-                // Una vez cargado el HTML, inicializamos la lógica del buscador
-                initBuscadorRealTime();
+
+                // PASO 2: Ahora que el HTML ya existe, buscamos el enlace y verificamos el rol
+                verificarAccesoAdmin(); 
+                
+                if (typeof initBuscadorRealTime === 'function') initBuscadorRealTime();
             })
             .catch(error => console.error('Error cargando el header:', error));
-    } else {
-        console.error("No se encontró un elemento con el ID 'header-placeholder' en el HTML.");
     }
 });
 
@@ -37,7 +39,7 @@ function initBuscadorRealTime() {
 
         try {
             // Usamos la URL de tu API (ajusta el puerto si es necesario)
-            const response = await fetch(`http://localhost:5000/api/products?name=${encodeURIComponent(query)}`);
+            const response = await fetch(`${window.location.origin}/api/products?name=${encodeURIComponent(query)}`);
             const products = await response.json();
 
             renderizarSugerencias(products, suggestionsBox);
@@ -87,3 +89,36 @@ window.addEventListener("click", function(event) {
         }
     }
 });
+
+async function verificarAccesoAdmin() {
+    const token = localStorage.getItem('token');
+    // Buscamos el ID justo en este momento
+    const adminLink = document.getElementById('admin-link');
+    
+    // Si NO hay token o NO se encontró el elemento en el HTML, salimos sin error
+    if (!token || !adminLink) {
+        console.warn("No se encontró el token o el ID 'admin-link' en el DOM.");
+        return;
+    }
+
+    try {
+        const res = await fetch(`${window.location.origin}/api/users/profile`, {
+            headers: { 
+                'Authorization': `Bearer ${token}` 
+            }
+        });
+
+        if (!res.ok) throw new Error("Error al consultar el perfil");
+
+        const usuario = await res.json();
+
+        // Aplicamos el estilo solo si el elemento existe
+        if (usuario.role === 'admin') {
+            adminLink.style.display = 'block'; 
+        } else {
+            adminLink.style.display = 'none';
+        }
+    } catch (error) {
+        console.error("Error verificando admin:", error);
+    }
+}
