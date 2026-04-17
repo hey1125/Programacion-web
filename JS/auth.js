@@ -1,3 +1,5 @@
+const API_URL = "http://localhost:5000/api/users";
+
 document.addEventListener("DOMContentLoaded", () => {
 
     const tabLogin = document.getElementById("tabLogin");
@@ -68,24 +70,77 @@ document.addEventListener("DOMContentLoaded", () => {
     configureValidation(loginForm);
     configureValidation(registerForm);
 
-    //Simular login y redireccionar a home
-    loginForm.addEventListener("submit", (e) => {
-
+    //Login de usuario y redireccionar a home
+    loginForm.addEventListener("submit", async (e) => {
         e.preventDefault();
 
-        /* redirección simulada */
+        const email = loginForm.querySelector("input[type='email']").value;
+        const password = loginForm.querySelector("input[type='password']").value;
 
-        window.location.href = "home.html";
+        try {
+            const res = await fetch(`${API_URL}/login`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ email, password })
+            });
 
+            const data = await res.json();
+
+            if (!res.ok) {
+                alert(data.message || "Error al iniciar sesión");
+                return;
+            }
+
+            //Guardar token
+            localStorage.setItem("token", data.token);
+
+            //Redirigir
+            window.location.href = "home.html";
+
+        } catch (error) {
+            console.error(error);
+            alert("Error de conexión con el servidor");
+        }
     });
 
-    //Simular registro
-    registerForm.addEventListener("submit", (e) => {
-
+    //Registro de usuario
+    registerForm.addEventListener("submit", async (e) => {
         e.preventDefault();
 
-        alert("Registro exitoso (simulado)");
+        const name = registerForm.querySelector("input[name='name']").value;
+        const email = registerForm.querySelector("input[type='email']").value;
+        const password = registerForm.querySelector("input[type='password']").value;
 
+        try {
+            const res = await fetch(`${API_URL}/register`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ name, email, password })
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                alert(data.message || "Error en el registro");
+                return;
+            }
+
+            alert("Registro exitoso");
+
+            //Opcional: guardar token automáticamente
+            localStorage.setItem("token", data.token);
+
+            //Cambiar a login
+            tabLogin.click();
+
+        } catch (error) {
+            console.error(error);
+            alert("Error de conexión con el servidor");
+        }
     });
 
 });
