@@ -1,3 +1,5 @@
+const API_URL = `${window.location.origin}`;
+
 const ordersTbody = document.getElementById("ordersTbody");
 const emptyState = document.getElementById("emptyState");
 const searchOrder = document.getElementById("searchOrder");
@@ -80,9 +82,10 @@ function applyFilters() {
 
 async function loadMyOrders() {
   try {
-    const token = localStorage.getItem("token"); 
+    const token = localStorage.getItem("token");
 
-const response = await fetch("http://localhost:5000/api/orders/my-orders", {      headers: {
+    const response = await fetch(`${API_URL}/api/orders/my-orders`, {
+      headers: {
         Authorization: `Bearer ${token}`
       }
     });

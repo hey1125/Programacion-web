@@ -1,3 +1,5 @@
+const API_URL = `${window.location.origin}`;
+
 document.addEventListener("DOMContentLoaded", loadOrders);
 
 const tbody = document.getElementById("adminOrdersTbody");
@@ -29,7 +31,7 @@ async function loadOrders() {
             return;
         }
 
-        const response = await fetch("http://localhost:5000/api/orders", {
+        const response = await fetch(`${API_URL}/api/orders`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -96,7 +98,7 @@ async function updateStatus(orderId, newStatus) {
     try {
         const token = localStorage.getItem("token");
 
-        const response = await fetch(`http://localhost:5000/api/orders/${orderId}/status`, {
+        const response = await fetch(`${API_URL}/api/orders/${orderId}/status`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -120,7 +122,6 @@ async function updateStatus(orderId, newStatus) {
         }
 
         showMessage("Estado actualizado correctamente", "success");
-    
 
     } catch (error) {
         console.error(error);
@@ -132,7 +133,6 @@ function showEmpty(msg) {
     tbody.innerHTML = "";
     emptyState.classList.remove("d-none");
     emptyState.innerHTML = `<p class="mb-0">${msg}</p>`;
-
 }
 
 function showMessage(msg, type = "success") {
