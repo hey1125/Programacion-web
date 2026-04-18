@@ -17,7 +17,7 @@
         <h1 class="cart-title">Tu Carrito</h1>
         <div class="cart-grid">
             <div class="cart-items">
-                <div class="cart-item" data-price="35">
+                <div class="cart-item" data-id="fake-id-1" data-price="35">
                     <img src="img/Mause.jpg" alt="producto">
                     <div class="cart-info">
                         <h3>Mouse Gamer</h3>
@@ -32,7 +32,7 @@
                     <button class="delete">🗑</button>
                 </div>
 
-                <div class="cart-item" data-price="50">
+                <div class="cart-item" data-id="fake-id-2" data-price="50">
                     <img src="img/Teclado.jpg" alt="producto">
 
                     <div class="cart-info">
@@ -48,7 +48,7 @@
                     <button class="delete">🗑</button>
                 </div>
 
-                <div class="cart-item" data-price="75">
+                <div class="cart-item" data-id="fake-id-3" data-price="75">
                     <img src="img/Ejemplo.jpg" alt="producto">
 
                     <div class="cart-info">
@@ -100,16 +100,16 @@
                     <h3>Información de Envío</h3>
 
                     <div class="form-row">
-                        <input type="text" placeholder="Nombre">
-                        <input type="text" placeholder="Apellido">
+                        <input type="text" id="name" placeholder="Nombre" required>
+                        <input type="text" id="lastname" placeholder="Apellido" required>
                     </div>
 
-                    <input type="text" placeholder="Dirección">
+                    <input type="text" id="address" placeholder="Dirección" required>
 
                     <div class="form-row">
-                        <input type="text" placeholder="Ciudad">
-                        <input type="text" placeholder="Provincia">
-                        <input type="text" placeholder="Código Postal">
+                        <input type="text" id="city" placeholder="Ciudad" required>
+                        <input type="text" id="province" placeholder="Provincia" required>
+                        <input type="text" id="zip" placeholder="Código Postal" required>
                     </div>
                 </div>
 
@@ -117,18 +117,18 @@
                     <h3>Método de Pago</h3>
 
                     <label>
-                        <input type="radio" name="payment" checked>
+                        <input type="radio" name="payment" value="credit_card" checked>
                         Tarjeta de Crédito / Débito
                     </label>
 
                     <label>
-                        <input type="radio" name="payment">
+                        <input type="radio" name="payment" value="paypal">
                         PayPal
                     </label>
 
                     <label>
-                        <input type="radio" name="payment">
-                        Mercado Pago
+                        <input type="radio" name="payment" value="cash">
+                        Efectivo
                     </label>
                 </div>
             </div>
