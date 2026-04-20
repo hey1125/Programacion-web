@@ -45,16 +45,19 @@ const getProductById = async (req, res) => {
   }
 };
 
-// @desc    Crear un producto
+// @desc    Crear un producto (con imagen subida a Cloudinary)
 // @route   POST /api/products
 // @access  Private/Admin
 const createProduct = async (req, res) => {
   try {
-    const { name, description, price, stock, category, imageUrl } = req.body;
+    const { name, description, price, stock, category } = req.body;
 
     if (!name || !price || !category) {
       return res.status(400).json({ message: 'Nombre, precio y categoría son obligatorios' });
     }
+
+    // Si se subió una imagen, req.file.path contiene la URL de Cloudinary
+    const imageUrl = req.file ? req.file.path : '';
 
     const product = await Product.create({
       name,
@@ -72,7 +75,7 @@ const createProduct = async (req, res) => {
   }
 };
 
-// @desc    Actualizar un producto
+// @desc    Actualizar un producto (con imagen opcional)
 // @route   PUT /api/products/:id
 // @access  Private/Admin
 const updateProduct = async (req, res) => {
@@ -82,14 +85,18 @@ const updateProduct = async (req, res) => {
       return res.status(404).json({ message: 'Producto no encontrado' });
     }
 
-    const { name, description, price, stock, category, imageUrl } = req.body;
+    const { name, description, price, stock, category } = req.body;
 
-    product.name = name || product.name;
+    product.name        = name        || product.name;
     product.description = description || product.description;
-    product.price = price !== undefined ? price : product.price;
-    product.stock = stock !== undefined ? stock : product.stock;
-    product.category = category || product.category;
-    product.imageUrl = imageUrl || product.imageUrl;
+    product.price       = price       !== undefined ? price : product.price;
+    product.stock       = stock       !== undefined ? stock : product.stock;
+    product.category    = category    || product.category;
+
+    // Solo reemplazar imagen si se subió una nueva
+    if (req.file) {
+      product.imageUrl = req.file.path;
+    }
 
     const updated = await product.save();
     await updated.populate('category', 'name');

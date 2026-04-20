@@ -12,15 +12,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 headerContainer.innerHTML = data;
 
                 // PASO 2: Ahora que el HTML ya existe, buscamos el enlace y verificamos el rol
-                verificarAccesoAdmin(); 
-                
+                verificarAccesoAdmin();
+
                 if (typeof initBuscadorRealTime === 'function') initBuscadorRealTime();
             })
             .catch(error => console.error('Error cargando el header:', error));
     }
 });
 
-/** * Lógica para el buscador con sugerencias desplegables 
+/**
+ * Lógica para el buscador con sugerencias desplegables
  */
 function initBuscadorRealTime() {
     const searchInput = document.getElementById('searchInput');
@@ -38,8 +39,8 @@ function initBuscadorRealTime() {
         }
 
         try {
-            // Usamos la URL de tu API (ajusta el puerto si es necesario)
-            const response = await fetch(`${window.location.origin}/api/products?name=${encodeURIComponent(query)}`);
+            // "search" es el parámetro que usa el ProductController en el backend
+            const response = await fetch(`${window.location.origin}/api/products?search=${encodeURIComponent(query)}`);
             const products = await response.json();
 
             renderizarSugerencias(products, suggestionsBox);
@@ -56,7 +57,8 @@ function initBuscadorRealTime() {
     });
 }
 
-/** * Crea los elementos dentro del menú desplegable 
+/**
+ * Crea los elementos dentro del menú desplegable
  */
 function renderizarSugerencias(products, box) {
     if (products.length === 0) {
@@ -77,12 +79,10 @@ function toggleMenu() {
     menu.classList.toggle("active");
 }
 
-window.addEventListener("click", function(event) {
-    
+window.addEventListener("click", function (event) {
     const userIcon = document.querySelector(".user-avatar-icon");
     const menu = document.getElementById("dropdownMenu");
 
-    
     if (userIcon && menu) {
         if (!userIcon.contains(event.target) && !menu.contains(event.target)) {
             menu.classList.remove("active");
@@ -92,10 +92,8 @@ window.addEventListener("click", function(event) {
 
 async function verificarAccesoAdmin() {
     const token = localStorage.getItem('token');
-    // Buscamos el ID justo en este momento
     const adminLink = document.getElementById('admin-link');
-    
-    // Si NO hay token o NO se encontró el elemento en el HTML, salimos sin error
+
     if (!token || !adminLink) {
         console.warn("No se encontró el token o el ID 'admin-link' en el DOM.");
         return;
@@ -103,8 +101,8 @@ async function verificarAccesoAdmin() {
 
     try {
         const res = await fetch(`${window.location.origin}/api/users/profile`, {
-            headers: { 
-                'Authorization': `Bearer ${token}` 
+            headers: {
+                'Authorization': `Bearer ${token}`
             }
         });
 
@@ -112,9 +110,8 @@ async function verificarAccesoAdmin() {
 
         const usuario = await res.json();
 
-        // Aplicamos el estilo solo si el elemento existe
         if (usuario.role === 'admin') {
-            adminLink.style.display = 'block'; 
+            adminLink.style.display = 'block';
         } else {
             adminLink.style.display = 'none';
         }

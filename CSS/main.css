@@ -762,6 +762,53 @@ body {
   background: #1e4fbf;
 }
 
+/* =========================
+   SIDEBAR - BOTONES ADMIN
+========================= */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.5rem 1rem;
+}
+.sidebar h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #e0e0e0;
+}
+.sidebar .sidebar-btn {
+  display: block;
+  text-decoration: none;
+  width: 100%;
+  padding: 0.65rem 1rem;
+  text-align: left;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #3c4043;
+  background-color: transparent;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.sidebar .sidebar-btn:hover {
+  background-color: #f8f9fa;
+  border-color: #4285f4;
+  color: #4285f4;
+}
+.sidebar .sidebar-btn.active {
+  background-color: #4285f4;
+  border-color: #4285f4;
+  color: #ffffff;
+  font-weight: 600;
+}
+.sidebar .sidebar-btn.active:hover {
+  background-color: rgb(27.444, 108.112, 241.756);
+}
+
 .cart {
   padding: 40px 80px;
 }
