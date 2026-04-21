@@ -15,6 +15,10 @@ async function cargarArticulo() {
         const res = await fetch(`${API_URL}/${id}`);
         if (!res.ok) throw new Error("Error al obtener el producto");
         const p = await res.json();
+        const description = (p.description || 'Sin descripción')
+        .replace(/\\n/g, "\n")
+        .replace(/\n/g, "<br>");
+
 
         container.innerHTML = `
             <div class="articulo">
@@ -28,7 +32,7 @@ async function cargarArticulo() {
                 <div class="articulo__info">
                     <h2>${p.name}</h2>
                     <p class="precio">$${p.price.toLocaleString()}</p>
-                    <p class="description">${p.description || 'Sin descripción disponible.'}</p>
+                    <p class="description">${description || 'Sin descripción disponible.'}</p>
                     
                     <div class="botones">
                         <button class="agregar" id="btn-add">
